@@ -4,7 +4,7 @@
 
 Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente, que serão definidas pelo jogador. Nesse tabuleiro teremos peças que iram representar cores (pedras preciosas), a partir do momento em que o jogador realiza a troca de posição de alguma dessas pedras preciosas e forma uma cadeia com três ou mais elementos iguais, essa cadeia é eliminada e o jogador ganha pontos referentes a quantidade de peças, logo após, mais dessas pedras preciosas vão completar o tabuleiro de forma aleatória. O jogo só chegará ao fim quando não existir mais combinações possíveis de serem realizadas no tabuleiro.
 
-- ✍ **Observações**
+  ✍ **Observações**
 
 - Os caracteres (pedras preciosas), são representados a partir das iniciais das cores, A - azul,  V - vermelho,  B - branco, D - dourado, R - rosa, L - laranja, M - magenta.
 - As cadeias podem se formar tanto na horizontal como na vertical, com exceção das diagonais.
