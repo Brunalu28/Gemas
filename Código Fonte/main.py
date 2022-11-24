@@ -1,5 +1,5 @@
 from constantes import *
-from funções import *
+from modulos import *
 
 print("-=-" * 30)
 print("-=-" * 30)
