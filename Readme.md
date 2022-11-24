@@ -1,4 +1,4 @@
-> Projeto em desenvolvimento para a disciplina de algoritmos e como intuito desenvolver o jogo gemas (pedras preciosas), que é inspirado no famoso CandyCrush®.
+> Projeto em desenvolvimento para a disciplina de algoritmos com intuito de criar o jogo gemas (pedras preciosas), que é inspirado no famoso CandyCrush®.
 
 ## 🎮 Como esse jogo vai funcionar?
 
@@ -6,9 +6,9 @@ Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente
 
   ✍ **Observações**
 
-- Os caracteres (pedras preciosas), são representados a partir das iniciais das cores, A - azul,  V - vermelho,  B - branco, D - dourado, R - rosa, L - laranja, M - magenta.
+- Os caracteres (pedras preciosas), são representados a partir das letras do alfabeto e é possivel escolher a quantidade de letras distintas que iram aparecer no tabuleiro, tendo um limite de até 26 letras.
 - As cadeias podem se formar tanto na horizontal como na vertical, com exceção das diagonais.
-- O número de linhas e colunas do tabuleiro é no máximo de 10 e a quantidade de linhas e colunas devem ser iguais.
+- O número de linhas e colunas do tabuleiro varia entre 3 até 10.
 
 ## 💻 Algumas funcionalidades extras
 
@@ -16,6 +16,7 @@ Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente
 - O metodo power-up 4 vai ser ativado quando forem formadas cadeias de 4 cores, eliminando toda linha ou coluna do tabuleiro.
 - O metodo power-up 5 vai ser ativado quando forem formadas cadeias de 5 cores, eliminando todas as peças da mesma cor da cadeia formada.
 
-## 🔍 Com quais ferramentas foi feito?
+## 🔍 Com quais ferramentas está sendo produzido?
 
 - [Python 3](https://www.python.org/downloads/)
+- [Visual Studio Code](https://code.visualstudio.com/)
