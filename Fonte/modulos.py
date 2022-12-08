@@ -8,9 +8,9 @@ import random
 tabuleiro = []
 junt1 = ""
 
-# Função que cria o tabuleiro comletras aleatorias do alfabeto que representam as cores das gemas
+# Função que cria o tabuleiro com letras aleatorias do alfabeto que representam as cores das gemas
 
-def criar(num_linhas, num_colunas, num_cores):
+def criar(num_linhas, num_colunas, num_cores, tabuleiro):
     cores_escolhidas = []
     for x in range(num_cores):
         while True:
@@ -19,6 +19,7 @@ def criar(num_linhas, num_colunas, num_cores):
                 cores_escolhidas.append(op_cores)
                 break
     for i in range(num_linhas):
+    # verifica se logo na criação do tabuleiro são formadas cadeias de 3 elementos nas linhas
         while True:
             contcores = 0
             linhas = []
@@ -36,51 +37,25 @@ def criar(num_linhas, num_colunas, num_cores):
                 tabuleiro.append(linhas)
                 break
 
-# Verificando colunas com letras iguais para refazer
+def validartroca(num_l1, num_c1, num_l2, num_c2, tabuleiro):
+    # permutação na mesma linha
+    if num_l1 == num_l2 and (num_c1 + 1) == num_c2 or num_c1 == num_l2 and (num_c1 - 1) == num_c2:
+        return True
+    # permutação na mesma coluna
+    elif (num_l1 + 1) == num_l2 and num_c1 == num_c2 or (num_l1 - 1) == num_l2 and num_c1 == num_c2:
+        return True
+    else:
+        return False
 
-    # if len(tabuleiro) == 3:
-    #     for i in range(len(tabuleiro)):
-    #         for j in range(len(tabuleiro[i])):
-    #             if i + 2 < len(tabuleiro):
-    #                 if tabuleiro[i][j] == tabuleiro[i+2][j] and tabuleiro[i][j] == tabuleiro[i+1][j]:
-    #                     while True:
-    #                         gemas_validas = random.choice(cores_escolhidas)
-    #                         if gemas_validas != tabuleiro[i][j]:
-    #                             tabuleiro[i][j] == gemas_validas
-    #                         break
-    # if len(tabuleiro) == 6:
-    #     for i in range(len(tabuleiro)):
-    #         for j in range(len(tabuleiro[i])):
-    #             if i + 2 < len(tabuleiro):
-    #                 if tabuleiro[i][j] == tabuleiro[i+2][j] and tabuleiro[i][j] == tabuleiro[i+1][j]:
-    #                     while True:
-    #                         gemas_validas = random.choice(cores_escolhidas)
-    #                         if gemas_validas != tabuleiro[i][j]:
-    #                             tabuleiro[i][j] == gemas_validas
-    #                         break
-    #                 if tabuleiro[i+3][j] == tabuleiro[i+4][j] and tabuleiro[i+3][j] == tabuleiro[i+5][j]:
-    #                     while True:
-    #                         gemas_validas = random.choice(cores_escolhidas)
-    #                         if gemas_validas != tabuleiro[i+3][j]:
-    #                             tabuleiro[i+3][j] == gemas_validas
-    #                         break
-    # if len(tabuleiro) == 9:
-    #     for i in range(len(tabuleiro)):
-    #         for j in range(len(tabuleiro[i])):
-    #             if i + 2 < len(tabuleiro):
-    #                 if tabuleiro[i][j] == tabuleiro[i+2][j] and tabuleiro[i][j] == tabuleiro[i+1][j]:
-    #                     while True:
-    #                         gemas_validas = random.choice(cores_escolhidas)
-    #                         if gemas_validas != tabuleiro[i][j]:
-    #                             tabuleiro[i][j] == gemas_validas
-    #                         break
-    #                 if tabuleiro[i+3][j] == tabuleiro[i+4][j] and tabuleiro[i+3][j] == tabuleiro[i+5][j]:
-    #                     while True:
-    #                         gemas_validas = random.choice(cores_escolhidas)
-    #                         if gemas_validas != tabuleiro[i+3][j]:
-    #                             tabuleiro[i+3][j] == gemas_validas
-    #                         break
+# realiza a troca de peças no tabuleiro
+
+def trocar(num_l1, num_c1, num_l2, num_c2, tabuleiro):
+    posinicial = tabuleiro[num_l1][num_c1]
+    posfinal = tabuleiro[num_l2][num_c2]
+    tabuleiro[num_l2][num_c2] = posinicial
+    tabuleiro[num_l1][num_c1] = posfinal
     return(tabuleiro)
+
 
 # Função que imprime o tabuleiro pronto na tela
 

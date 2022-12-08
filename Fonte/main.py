@@ -7,6 +7,11 @@ print("-=-" * 11, "BEM VINDO AO GEMAS!","-=-" * 12)
 print("-=-" * 30)
 print("-=-" * 30)
 
+print(INSTRUCOES)
+
+print("-=-" * 11, "VAMOS COMEÇAR O JOGO!","-=-" * 12)
+print()
+
 def main():
 
     pontos = 0
@@ -23,14 +28,20 @@ def main():
             num_linhas = num_colunas = 9
             break
         else:
-            print("Digite um nível válido")
+            print("Digite um nível válido!")
     while True:
-        num_cores = int(input("Digite a quantidade de cores por tabuleiro [3-10]: "))
-        if num_cores >= 3 and num_cores <= 10:
-            criar(num_linhas, num_colunas, num_cores)
-            imprimir(tabuleiro, junt1, num_linhas)
-            break
-    print(INSTRUCOES)
+        try:
+            num_cores = int(input("Digite a quantidade de cores por tabuleiro [3-10]: "))
+            if num_cores >= 3 and num_cores <= 10:
+                break
+            else:
+                print("Digite um número de cores válido!")
+        except ValueError:
+            print("Digite um número de cores válido!")
+
+    criar(num_linhas, num_colunas, num_cores, tabuleiro)
+    imprimir(tabuleiro, junt1, num_linhas)
+    print()
 
     while True:
         passe = input("Digite uma das opções [T], [D], ou [S]: ").upper()
@@ -38,8 +49,50 @@ def main():
             print("Digite um comando válido!")
         else:
             if passe == "T":
-                print("função troca ainda será criada")
-                break
+                while True:
+                    try:
+                        linha1 = int(input("Digite a linha em que se localiza a primeira gema: "))
+                        if linha1 <= len(tabuleiro):
+                            break
+                        else:
+                            print("Digite um valor dentro do tamanho do tabuleiro!")
+                    except ValueError:
+                        print("Só são aceitos valores inteiros!")
+                while True:
+                    try:
+                        coluna1 = int(input("Digite a coluna em que se localiza a primeira gema: "))
+                        if coluna1 <= len(tabuleiro):
+                            break
+                        else:
+                            print("Digite um valor dentro do tamanho do tabuleiro!")
+                    except ValueError:
+                        print("Só são aceitos valores inteiros!")
+                while True:
+                    try:
+                        linha2 = int(input("Digite a linha em que se localiza a segunda gema: "))
+                        if linha2 <= len(tabuleiro):
+                            break
+                        else:
+                            print("Digite um valor dentro do tamanho do tabuleiro!")
+                    except ValueError:
+                        print("Só são aceitos valores inteiros!")
+                while True:
+                    try:
+                        coluna2 = int(input("Digite a coluna em que se localiza a segunda gema: "))
+                        if coluna2 <= len(tabuleiro):
+                            break
+                        else:
+                            print("Digite um valor dentro do tamanho do tabuleiro!")
+                    except ValueError:
+                        print("Só são aceitos valores inteiros!")
+                print()
+                resultado = validartroca(linha1, coluna1, linha2, coluna2, tabuleiro)
+                if resultado == False:
+                    print("As posições informadas são de gemas que não estão ao lado ou abaixo uma da outra, informe novas posições")
+                else:
+                    trocar(linha1, coluna1, linha2, coluna2, tabuleiro)
+                    imprimir(tabuleiro, junt1, num_linhas)
+                    print()
             elif passe == "D":
                 print("função dica ainda será criada")
                 break
