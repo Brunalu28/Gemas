@@ -17,30 +17,28 @@ def main():
     pontos = 0
 
     while True:
-        nivel_jogo = input("Digite em qual nível do jogo você quer jogar [Fácil], [Médio] ou [Difícil]: ").lower()
-        if nivel_jogo == "fácil" or nivel_jogo == "facil":
-            num_linhas = num_colunas = 3
-            break
-        elif nivel_jogo == "médio" or nivel_jogo == "medio":
-            num_linhas = num_colunas = 6
-            break
-        elif nivel_jogo == "difícil" or nivel_jogo == "dificil":
-            num_linhas = num_colunas = 9
-            break
-        else:
-            print("Digite um nível válido!")
+        try:
+            num_linhas = num_colunas = int(input("Digite a quantidade de linhas e colunas do tabuleiro [Fácil: 3-6] [Médio: 6-8] [Difícil: 8-10]: "))
+            if num_linhas >= 3 and num_linhas <= 10:
+                break
+            else:
+                print("Digite um valor entre 3 e 10!")
+        except ValueError:
+            print("Digite um valor correspondente as linhas e colunas do tabuleiro!")
+
     while True:
         try:
-            num_cores = int(input("Digite a quantidade de cores por tabuleiro [3-10]: "))
-            if num_cores >= 3 and num_cores <= 10:
+            num_cores = int(input("Digite a quantidade de cores por tabuleiro [3-26]: "))
+            if num_cores >= 3 and num_cores <= 26:
                 break
             else:
                 print("Digite um número de cores válido!")
         except ValueError:
             print("Digite um número de cores válido!")
 
-    criar(num_linhas, num_colunas, num_cores, tabuleiro)
-    imprimir(tabuleiro, junt1, num_linhas)
+    criacores(num_cores, cores_escolhidas)
+    criar(num_linhas, num_colunas, cores_escolhidas, tabuleiro)
+    imprimir(tabuleiro, junt1)
     print()
 
     while True:
@@ -91,12 +89,16 @@ def main():
                     print("As posições informadas são de gemas que não estão ao lado ou abaixo uma da outra, informe novas posições")
                 else:
                     trocar(linha1, coluna1, linha2, coluna2, tabuleiro)
-                    imprimir(tabuleiro, junt1, num_linhas)
+                    cadeiasHorizontais(tabuleiro)
+                    cadeiasVerticais(tabuleiro)
+                    preencher(tabuleiro, cores_escolhidas, trocas=1)
+                    imprimir(tabuleiro, junt1)
                     print()
             elif passe == "D":
                 print("função dica ainda será criada")
                 break
             elif passe == "S":
                 print("Obrigada por participar do jogo!")
+                # print("Você obteve um total de {} pontos!".format(pontos)) para fazer
                 break
 main()
