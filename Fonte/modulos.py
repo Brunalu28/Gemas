@@ -3,15 +3,10 @@
 from constantes import *
 import random
 
-# Variáveis para as funções
-
-tabuleiro = []
-cores_escolhidas = []
-junt1 = ""
-
 # função que gera as cores a partir da quantidade escolhida pelo usuário
 
-def criacores(num_cores, cores_escolhidas):
+def criacores(num_cores):
+    cores_escolhidas = []
     for x in range(num_cores):
         while True:
             op_cores = random.choice(cores_gemas)
@@ -19,6 +14,8 @@ def criacores(num_cores, cores_escolhidas):
                 cores_escolhidas.append(op_cores)
                 break
     return(cores_escolhidas)
+
+# cria a apresentação do tabuleiro com linhas ao redor
 
 def linhas(tabuleiro, t=0):
     tam = len(tabuleiro)
@@ -46,7 +43,8 @@ def linhas(tabuleiro, t=0):
 
 # Função que cria o tabuleiro com letras aleatorias do alfabeto que representam as cores das gemas
 
-def criar(num_linhas, num_colunas, cores_escolhidas, tabuleiro):
+def criar(num_linhas, num_colunas, cores_escolhidas):
+    tabuleiro = []
     for i in range(num_linhas):
     # verifica se logo na criação do tabuleiro são formadas cadeias de 3 elementos nas linhas
         while True:
@@ -65,6 +63,7 @@ def criar(num_linhas, num_colunas, cores_escolhidas, tabuleiro):
             if contcores < 2:
                 tabuleiro.append(linhas)
                 break
+    return(tabuleiro)
 
 def validartroca(num_l1, num_c1, num_l2, num_c2, tabuleiro):
     # permutação na mesma linha
@@ -129,9 +128,9 @@ def cadeiasVerticais(tabuleiro):
                             inicio = ((j + 2) - cont)
                             fim = (j + 1)
                             indices.append(inicio)
-                            indices.append(j)
+                            indices.append(i)
                             indices.append(fim)
-                            indices.append(j)
+                            indices.append(i)
                             cont = 1
                             cadeia_vertical.append(indices)
                     elif cont == 2:
@@ -158,29 +157,61 @@ def eliminaCadeia(tabuleiro, cadeia):
                 tabuleiro[i][j] = " "
 
 
-# Função que imprime o tabuleiro pronto na tela
+# função que imprime o tabuleiro pronto na tela
 
-def imprimir(tabuleiro, junt1):
+def imprimir(tabuleiro):
+    junt1 = ""
     print()
     linhas(tabuleiro)
     for i in range(len(tabuleiro)):
         junt1 += "{} |".format(i)
         for j in range(len(tabuleiro[i])):
-            junt1 += " {} ".format(tabuleiro[i][j])
-        print(junt1.strip(), "|")
+            if j == (len(tabuleiro) - 1):
+                junt1 += " {}".format(tabuleiro[i][j])
+            else:
+                junt1 += " {} ".format(tabuleiro[i][j])
+        print(junt1, "|")
         junt1 = ""
     linhas(tabuleiro, t=1)
 
+# função que contabiliza os pontos em cada rodada
+
+def peçasEliminadas(tabuleiro):
+    gemaseliminadas = 0
+    contgemas = 0
+    for i in range(len(tabuleiro)):
+            for j in range(len(tabuleiro)):
+                if tabuleiro[i][j] == " ":
+                    contgemas +=1
+    gemaseliminadas = contgemas
+    contgemas = 0
+    return(gemaseliminadas) # tá contando certo, mas como ainda não fiz a função deslocar ele acumula pontos
+
+
 # função que preenche o tabuleiro após a eliminação das peças
 
-def preencher(tabuleiro, cores_escolhidas, trocas=0):
-    gemaseliminadas = 0
+def preencher(tabuleiro, cores_escolhidas):
     for i in range(len(tabuleiro)):
             for j in range(len(tabuleiro)):
                 gemas_validas = random.choice(cores_escolhidas)
                 if tabuleiro[i][j] == " ":
                     tabuleiro[i][j] = gemas_validas
-                    gemaseliminadas+=1
-    if trocas == 1:
-        print("Você eliminou um total de {} gemas!".format(gemaseliminadas))
-    return(gemaseliminadas)
+    return(tabuleiro)
+
+
+def deslocarTabuleiro(tabuleiro):
+    contvazios = 0
+    for i in range(len(tabuleiro)):
+        for j in range(len(tabuleiro)):
+                    if tabuleiro[j][i] == " ":
+                        contvazios +=1
+# deslocando colunas do tabuleiro
+    while contvazios > 0:
+        for i in range(len(tabuleiro)):
+            for j in range(len(tabuleiro)):
+                if j + 1 <= len(tabuleiro) - 1:
+                    if tabuleiro[j][i] != " " and tabuleiro[j+ 1][i] == " ":
+                        tabuleiro[j+1][i] = tabuleiro[j][i]
+                        tabuleiro[j][i] = " "
+                        contvazios -= 1
+    return(tabuleiro)
