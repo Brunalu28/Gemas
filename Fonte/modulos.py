@@ -185,7 +185,7 @@ def peçasEliminadas(tabuleiro):
                     contgemas +=1
     gemaseliminadas = contgemas
     contgemas = 0
-    return(gemaseliminadas) # tá contando certo, mas como ainda não fiz a função deslocar ele acumula pontos
+    return(gemaseliminadas)
 
 
 # função que preenche o tabuleiro após a eliminação das peças
@@ -196,16 +196,16 @@ def preencher(tabuleiro, cores_escolhidas):
                 gemas_validas = random.choice(cores_escolhidas)
                 if tabuleiro[i][j] == " ":
                     tabuleiro[i][j] = gemas_validas
-    return(tabuleiro)
 
 
-def deslocarTabuleiro(tabuleiro):
+# função deslocar não está 100%
+
+def deslocarElementos(tabuleiro, coordenadas):
     contvazios = 0
     for i in range(len(tabuleiro)):
         for j in range(len(tabuleiro)):
                     if tabuleiro[j][i] == " ":
                         contvazios +=1
-# deslocando colunas do tabuleiro
     while contvazios > 0:
         for i in range(len(tabuleiro)):
             for j in range(len(tabuleiro)):
@@ -215,3 +215,98 @@ def deslocarTabuleiro(tabuleiro):
                         tabuleiro[j][i] = " "
                         contvazios -= 1
     return(tabuleiro)
+
+# função auxiliar para deslocar
+
+def desloca(tabuleiro):
+    for i in range(len(tabuleiro)):
+        for j in range(len(tabuleiro)):
+            if tabuleiro[i][j] == " ":
+                deslocarElementos(tabuleiro, j)
+
+
+# power up 4 linhas e colunas
+
+def powerup4_linhas(tabuleiro):
+    for i in range(len(tabuleiro)):
+            indices = []
+            cont = 1
+            for j in range(len(tabuleiro)):
+                if j < len(tabuleiro) - 1:
+                    if tabuleiro[i][j] == tabuleiro[i][j + 1]:
+                        cont += 1
+                        if cont >= 4:
+                            indices.append(i)
+                            cont = 1
+                    elif cont == 2 or cont == 3:
+                        cont = 1
+            if len(indices) > 0:
+                eliminapowerup4_linhas(tabuleiro, indices)
+
+def eliminapowerup4_linhas(tabuleiro, indices):
+    for i in range(len(tabuleiro)):
+        if i == indices[0]:
+            for j in range(len(tabuleiro[i])):
+                tabuleiro[i][j] = " "
+
+def powerup4_colunas(tabuleiro):
+    for i in range(len(tabuleiro)):
+            indices = []
+            cont = 1
+            for j in range(len(tabuleiro)):
+                if j < len(tabuleiro) - 1:
+                    if tabuleiro[j][i] == tabuleiro[j + 1][i]:
+                        cont += 1
+                        if cont >= 4:
+                            indices.append(i)
+                            cont = 1
+                    elif cont == 2 or cont == 3:
+                        cont = 1
+            if len(indices) > 0:
+                eliminapowerup4_colunas(tabuleiro, indices)
+
+def eliminapowerup4_colunas(tabuleiro, indices):
+    for i in range(len(tabuleiro)):
+        if i == indices[0]:
+            for j in range(len(tabuleiro[i])):
+                tabuleiro[j][i] = " "
+
+# função power up 5 linhas e colunas
+
+def powerup5_linhas(tabuleiro):
+    for i in range(len(tabuleiro)):
+            indices = []
+            cont = 1
+            for j in range(len(tabuleiro)):
+                if j < len(tabuleiro) - 1:
+                    if tabuleiro[i][j] == tabuleiro[i][j + 1]:
+                        cont += 1
+                        if cont >= 5:
+                            indices.append(tabuleiro[i][j])
+                            cont = 1
+                    elif cont == 2 or cont == 3 or cont == 4:
+                        cont = 1
+            if len(indices) > 0:
+                eliminapowerup5(tabuleiro, indices)
+
+def powerup5_colunas(tabuleiro):
+    for i in range(len(tabuleiro)):
+            indices = []
+            cont = 1
+            for j in range(len(tabuleiro)):
+                if j < len(tabuleiro) - 1:
+                    if tabuleiro[j][i] == tabuleiro[j + 1][i]:
+                        cont += 1
+                        if cont >= 5:
+                            indices.append(tabuleiro[j][i])
+                            cont = 1
+                    elif cont == 2 or cont == 3 or cont == 4:
+                        cont = 1
+            if len(indices) > 0:
+                eliminapowerup5(tabuleiro, indices)
+
+def eliminapowerup5(tabuleiro, indices):
+    for i in range(len(tabuleiro)):
+            for j in range(len(tabuleiro)):
+               if tabuleiro[i][j] == indices[0]:
+                   tabuleiro[i][j] = " "

@@ -95,12 +95,18 @@ def main():
                             print("As posições informadas são de gemas que não estão ao lado ou abaixo uma da outra, informe novas posições")
                         else:
                             trocar(linha1, coluna1, linha2, coluna2, tabuleiro)
+                            powerup4_linhas(tabuleiro)
+                            powerup4_colunas(tabuleiro)
+                            powerup5_colunas(tabuleiro)
+                            powerup5_linhas(tabuleiro)
                             cadeiasHorizontais(tabuleiro)
                             cadeiasVerticais(tabuleiro)
                             eliminadas = peçasEliminadas(tabuleiro)
                             if eliminadas > 0:
                                 print("Você eliminou um total de {} gemas!".format(eliminadas))
-                            deslocarTabuleiro(tabuleiro)
+                            else:
+                                print("Você não eliminou nenhuma gema!")
+                            desloca(tabuleiro)
                             preencher(tabuleiro, coresEscolhidas)
                             imprimir(tabuleiro)
                             print()
