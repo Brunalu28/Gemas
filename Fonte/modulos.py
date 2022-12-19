@@ -190,12 +190,13 @@ def peçasEliminadas(tabuleiro):
 
 # função que preenche o tabuleiro após a eliminação das peças
 
-def preencher(tabuleiro, cores_escolhidas):
+def preencher(tabuleiro, cores_escolhidas, num_cores):
     for i in range(len(tabuleiro)):
             for j in range(len(tabuleiro)):
-                gemas_validas = random.choice(cores_escolhidas)
+                # gemas_validas = random.choice(cores_escolhidas)
+                n = random.randrange(0, num_cores - 1)
                 if tabuleiro[i][j] == " ":
-                    tabuleiro[i][j] = gemas_validas
+                    tabuleiro[i][j] = cores_escolhidas[n]
 
 
 # função deslocar não está 100%
@@ -215,7 +216,7 @@ def deslocarElementos(tabuleiro, coordenadas):
                         tabuleiro[j][i] = tabuleiro[j-1][i]
                         tabuleiro[j-1][i] = " "
         contvazios -= 1
-    return(tabuleiro)
+    
 
 # função auxiliar para deslocar
 
@@ -224,6 +225,7 @@ def desloca(tabuleiro):
         for j in range(len(tabuleiro)):
             if tabuleiro[j][i] == " ":
                 deslocarElementos(tabuleiro, j)
+    return(tabuleiro)
 
 
 # power up 4 linhas e colunas
