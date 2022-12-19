@@ -12,6 +12,8 @@ print(INSTRUCOES)
 print("-=-" * 11, "VAMOS COMEÇAR O JOGO!","-=-" * 12)
 print()
 
+# principal
+
 def main():
 
     pontos = 0

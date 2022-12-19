@@ -15,6 +15,8 @@ def criacores(num_cores):
                 break
     return(cores_escolhidas)
 
+    # socorro Deeus
+
 # cria a apresentação do tabuleiro com linhas ao redor
 
 def linhas(tabuleiro, t=0):
