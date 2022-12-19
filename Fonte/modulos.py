@@ -201,19 +201,20 @@ def preencher(tabuleiro, cores_escolhidas):
 # função deslocar não está 100%
 
 def deslocarElementos(tabuleiro, coordenadas):
-    contvazios = 0
-    for i in range(len(tabuleiro)):
-        for j in range(len(tabuleiro)):
-                    if tabuleiro[j][i] == " ":
-                        contvazios +=1
+    for i in range(len(tabuleiro) + 1):
+        if i == coordenadas:
+            contvazios = 0
+            for j in range(len(tabuleiro)):
+                        if tabuleiro[j][i] == " " and tabuleiro[j- 1][i] != " ":
+                            contvazios +=1
     while contvazios > 0:
         for i in range(len(tabuleiro)):
             for j in range(len(tabuleiro)):
-                if j + 1 <= len(tabuleiro) - 1:
-                    if tabuleiro[j][i] != " " and tabuleiro[j+ 1][i] == " ":
-                        tabuleiro[j+1][i] = tabuleiro[j][i]
-                        tabuleiro[j][i] = " "
-                        contvazios -= 1
+                if j > 0:
+                    if tabuleiro[j][i] == " " and tabuleiro[j- 1][i] != " ":
+                        tabuleiro[j][i] = tabuleiro[j-1][i]
+                        tabuleiro[j-1][i] = " "
+        contvazios -= 1
     return(tabuleiro)
 
 # função auxiliar para deslocar
@@ -221,7 +222,7 @@ def deslocarElementos(tabuleiro, coordenadas):
 def desloca(tabuleiro):
     for i in range(len(tabuleiro)):
         for j in range(len(tabuleiro)):
-            if tabuleiro[i][j] == " ":
+            if tabuleiro[j][i] == " ":
                 deslocarElementos(tabuleiro, j)
 
 
