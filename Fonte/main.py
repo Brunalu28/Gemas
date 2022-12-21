@@ -12,7 +12,7 @@ print(INSTRUCOES)
 print("-=-" * 11, "VAMOS COMEÇAR O JOGO!","-=-" * 12)
 print()
 
-# principal
+# função principal do jogo
 
 def main():
 
@@ -49,7 +49,7 @@ def main():
         else:
             tabuleiro = criar(num_linhas, num_colunas, coresEscolhidas)
     print()
-        
+
     while True:
         passe = input("Digite uma das opções [T], [D], ou [S]: ").upper()
         if passe != "T" and passe != "D" and passe != "S":
@@ -98,10 +98,8 @@ def main():
                     print("As posições informadas são de gemas que não estão ao lado ou abaixo uma da outra, informe novas posições")
                 else:
                     trocar(linha1, coluna1, linha2, coluna2, tabuleiro)
-                    powerup4_linhas(tabuleiro)
-                    powerup4_colunas(tabuleiro)
-                    powerup5_colunas(tabuleiro)
-                    powerup5_linhas(tabuleiro)
+                    powerup4e5_colunas(tabuleiro)
+                    powerup4e5_linhas(tabuleiro)
                     cadeiasHorizontais(tabuleiro)
                     cadeiasVerticais(tabuleiro)
                     eliminadas = peçasEliminadas(tabuleiro)
@@ -121,5 +119,5 @@ def main():
                 print("Obrigada por participar do jogo!")
                 print("Você obteve um total de {} pontos!".format(pontos))
                 break
-        
+
 main()
