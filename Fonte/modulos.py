@@ -3,6 +3,19 @@
 from constantes import *
 import random
 
+# função para validar linhas e colunas pedidas para a permutação
+
+def validaentradas(entrada, tabuleiro): # ainda não está sendo utilizada.
+    while True:
+        try:
+            if entrada <= len(tabuleiro):
+                break
+            else:
+                print("Digite um valor dentro do tamanho do tabuleiro!")
+        except ValueError:
+            print("Só são aceitos valores inteiros!")
+
+
 # função que gera as cores a partir da quantidade escolhida pelo usuário
 
 def criacores(num_cores):
@@ -296,4 +309,16 @@ def eliminapowerup5(tabuleiro, indices):
             for j in range(len(tabuleiro)):
                if tabuleiro[i][j] == indices[0]:
                    tabuleiro[i][j] = " "
+
+# função para dar dicas do jogo
+
+def dicasdojogo_horizontal(tabuleiro):
+    for i in range(len(tabuleiro)):
+        for j in range(len(tabuleiro)):
+            print("concluir hoje!")
+
+def dicasdojogo_vertical(tabuleiro):
+    for i in range(len(tabuleiro)):
+        for j in range(len(tabuleiro)):
+            print("concluir hoje!")
 
