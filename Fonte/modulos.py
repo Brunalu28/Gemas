@@ -2,6 +2,17 @@
 
 from constantes import *
 import random
+from os import system, name
+
+# função para limpar o terminal a cada rodada
+
+def limpaTela():
+    # windows
+    if name == 'nt':
+      system('cls')
+    # mac e linux
+    else:
+      system('clear')
 
 # função que gera as cores a partir da quantidade escolhida pelo usuário
 
@@ -66,6 +77,8 @@ def criar(num_linhas, num_colunas, cores_escolhidas):
                 break
     return(tabuleiro)
 
+# valida a troca permitindo que só sejam feitas se as gemas estiverem lado a lado ou uma abaixo da outra
+
 def validartroca(num_l1, num_c1, num_l2, num_c2, tabuleiro):
     # permutação na mesma linha
     if num_l1 == num_l2 and (num_c1 + 1) == num_c2 or num_c1 == num_l2 and (num_c1 - 1) == num_c2:
@@ -85,7 +98,7 @@ def trocar(num_l1, num_c1, num_l2, num_c2, tabuleiro):
     tabuleiro[num_l1][num_c1] = posfinal
     return(tabuleiro)
 
-# identificar cadeias horizontais e armazena indices de linhas e colunas das cadeias
+# identifica cadeias de 3 elementos na horizontal e armazena indices das linhas das cadeias
 
 def cadeiasHorizontais(tabuleiro):
     for i in range(len(tabuleiro)):
@@ -112,7 +125,7 @@ def cadeiasHorizontais(tabuleiro):
             if len(cadeia_horizontal) > 0:
                 eliminaCadeia(tabuleiro, cadeia_horizontal)
 
-# identificar cadeias verticais e armazena indices de linhas e colunas das cadeias
+# identifica cadeias com 3 elementos na vertical e armazena indices das colunas das cadeias
 
 def cadeiasVerticais(tabuleiro):
     for i in range(len(tabuleiro)):
@@ -199,7 +212,7 @@ def preencher(tabuleiro, cores_escolhidas, num_cores):
                     tabuleiro[i][j] = cores_escolhidas[n]
 
 
-# função deslocar (desloca todos os elementos para baixo após a eliminação das cadeiass)
+# função deslocar (desloca todos os elementos para baixo após a eliminação das cadeias)
 
 def deslocarElementos(tabuleiro, coordenadas):
     for i in range(len(tabuleiro) + 1):
@@ -299,6 +312,8 @@ def eliminapowerup5(tabuleiro, indices):
 
 # função para dar dicas do jogo
 
+# dá dicas de jogadas nas linhas
+
 def dicasdojogo_horizontal(tabuleiro):
     contvazios = 0
     for i in range(len(tabuleiro)):
@@ -311,19 +326,19 @@ def dicasdojogo_horizontal(tabuleiro):
                     if cont >= 2:
                         if j < len(tabuleiro) - 3:
                             if tabuleiro[i][j+3] == tabuleiro[i][j]:
-                                indices_dicas.append(i)
-                                indices_dicas.append(j+3)
+                                indices_dicas.append([i, j+3])
                                 cont = 1
                 elif cont == 2:
                     cont = 1
         if len(indices_dicas) > 0:
-            print("Linha e coluna do elemento que forma uma cadeia: {}".format(indices_dicas))
+            for i in range(len(indices_dicas)):
+                print("{}Linha e coluna do elemento que forma uma cadeia na horizontal: {}{}".format(cores["verde"], indices_dicas[i], cores["limpa"]))
         else:
             contvazios +=1
     if contvazios > 0:
-        print("Não temos mais combinações aparentes nas linhas!: {}".format([-1, -1]))
+        print("{}Não temos mais combinações aparentes nas linhas! {}{}".format(cores["vermelho"], [-1, -1], cores["limpa"]))
 
-# dicas para colunas precisa de ajuste
+# dá dicas de jogadas nas colunas
 
 def dicasdojogo_vertical(tabuleiro):
     contvazios = 0
@@ -331,20 +346,20 @@ def dicasdojogo_vertical(tabuleiro):
         cont = 1
         indices_dicas = []
         for j in range(len(tabuleiro)):
-            if j < len(tabuleiro) - 1 and i < len(tabuleiro) - 1:
+            if j < len(tabuleiro) - 1:
                 if tabuleiro[j][i] == tabuleiro[j + 1][i]:
                     cont += 1
                     if cont >= 2:
-                        if j < len(tabuleiro) - 3 and i < len(tabuleiro) - 3:
+                        if j < len(tabuleiro) - 3:
                             if tabuleiro[j+3][i] == tabuleiro[j][i]:
-                                indices_dicas.append(i+3)
-                                indices_dicas.append(j)
+                                indices_dicas.append([j+3, i])
                                 cont = 1
                 elif cont == 2:
                     cont = 1
         if len(indices_dicas) > 0:
-            print("Linha e coluna do elemento que forma uma cadeia: {}".format(indices_dicas))
+            for i in range(len(indices_dicas)):
+                print("{}Linha e coluna do elemento que forma uma cadeia na vertical: {}{}".format(cores["verde"], indices_dicas[i], cores["limpa"]))
         else:
             contvazios +=1
     if contvazios > 0:
-        print("Não temos mais combinações aparentes nas colunas!: {}".format([-1, -1]))
+        print("{}Não temos mais combinações aparentes nas colunas! {}{}".format(cores["vermelho"], [-1, -1], cores["limpa"]))

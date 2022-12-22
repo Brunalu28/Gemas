@@ -14,6 +14,7 @@ print()
 
 # função principal do jogo
 
+
 def main():
 
     pontos = 0
@@ -40,6 +41,10 @@ def main():
 
     coresEscolhidas = criacores(num_cores)
     tabuleiro = criar(num_linhas, num_colunas, coresEscolhidas)
+
+
+    # verifica se existem cadeias na vertical já formadas, pois na função criar as cadeias já formadas da horizontal já estão tiradas
+
     while True:
         cadeiasVerticais(tabuleiro)
         eliminadas = peçasEliminadas(tabuleiro)
@@ -51,8 +56,8 @@ def main():
     print()
 
     while True:
-        passe = input("Digite uma das opções [T], [D], ou [S]: ").upper()
-        if passe != "T" and passe != "D" and passe != "S":
+        passe = input("Digite uma das opções [T], [D], [I], [TA], ou [S]: ").upper()
+        if passe != "T" and passe != "D" and passe != "S" and passe != "TA" and passe != "I":
             print("{}Digite um comando válido!{}".format(cores["vermelho"], cores["limpa"]))
         else:
             if passe == "T":
@@ -121,7 +126,11 @@ def main():
                 if pontos > 0:
                     print("{}Parabéns! Você obteve um total de {} pontos! :){}".format(cores["verde"], pontos, cores["limpa"]))
                 else:
-                    print("{}Que triste, você perdeu o jogo! :({}".format(cores["vermelho"], cores["limpa"]))
+                    print("{}Que triste, você perdeu o jogo, e ficou com {} pontos! :({}".format(cores["vermelho"], pontos, cores["limpa"]))
                 break
-
+            elif passe == "TA":
+                imprimir(tabuleiro)
+                print()
+            elif passe == "I":
+                print(INSTRUCOES)
 main()
