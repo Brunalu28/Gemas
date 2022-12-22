@@ -3,19 +3,6 @@
 from constantes import *
 import random
 
-# função para validar linhas e colunas pedidas para a permutação
-
-def validaentradas(entrada, tabuleiro): # ainda não está sendo utilizada.
-    while True:
-        try:
-            if entrada <= len(tabuleiro):
-                break
-            else:
-                print("Digite um valor dentro do tamanho do tabuleiro!")
-        except ValueError:
-            print("Só são aceitos valores inteiros!")
-
-
 # função que gera as cores a partir da quantidade escolhida pelo usuário
 
 def criacores(num_cores):
@@ -313,12 +300,51 @@ def eliminapowerup5(tabuleiro, indices):
 # função para dar dicas do jogo
 
 def dicasdojogo_horizontal(tabuleiro):
+    contvazios = 0
     for i in range(len(tabuleiro)):
+        cont = 1
+        indices_dicas = []
         for j in range(len(tabuleiro)):
-            print("concluir hoje!")
+            if j < len(tabuleiro) - 1:
+                if tabuleiro[i][j] == tabuleiro[i][j + 1]:
+                    cont += 1
+                    if cont >= 2:
+                        if j < len(tabuleiro) - 3:
+                            if tabuleiro[i][j+3] == tabuleiro[i][j]:
+                                indices_dicas.append(i)
+                                indices_dicas.append(j+3)
+                                cont = 1
+                elif cont == 2:
+                    cont = 1
+        if len(indices_dicas) > 0:
+            print("Linha e coluna do elemento que forma uma cadeia: {}".format(indices_dicas))
+        else:
+            contvazios +=1
+    if contvazios > 0:
+        print("Não temos mais combinações aparentes nas linhas!: {}".format([-1, -1]))
+
+# dicas para colunas precisa de ajuste
 
 def dicasdojogo_vertical(tabuleiro):
+    contvazios = 0
     for i in range(len(tabuleiro)):
+        cont = 1
+        indices_dicas = []
         for j in range(len(tabuleiro)):
-            print("concluir hoje!")
-
+            if j < len(tabuleiro) - 1 and i < len(tabuleiro) - 1:
+                if tabuleiro[j][i] == tabuleiro[j + 1][i]:
+                    cont += 1
+                    if cont >= 2:
+                        if j < len(tabuleiro) - 3 and i < len(tabuleiro) - 3:
+                            if tabuleiro[j+3][i] == tabuleiro[j][i]:
+                                indices_dicas.append(i+3)
+                                indices_dicas.append(j)
+                                cont = 1
+                elif cont == 2:
+                    cont = 1
+        if len(indices_dicas) > 0:
+            print("Linha e coluna do elemento que forma uma cadeia: {}".format(indices_dicas))
+        else:
+            contvazios +=1
+    if contvazios > 0:
+        print("Não temos mais combinações aparentes nas colunas!: {}".format([-1, -1]))
