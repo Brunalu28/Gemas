@@ -22,3 +22,7 @@ Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente
 
 - [Python 3](https://www.python.org/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+
+##
+
+Feito com ♥ by [Brunalu28](https://github.com/Brunalu28)
