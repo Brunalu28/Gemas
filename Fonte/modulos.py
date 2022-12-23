@@ -296,6 +296,7 @@ def eliminapowerup4_linhas(tabuleiro, indices):
         if i == indices[0]:
             for j in range(len(tabuleiro[i])):
                 tabuleiro[i][j] = " "
+    print(POWERUP4_LINHAS)
 
 
 def eliminapowerup4_colunas(tabuleiro, indices):
@@ -303,12 +304,14 @@ def eliminapowerup4_colunas(tabuleiro, indices):
         if i == indices[0]:
             for j in range(len(tabuleiro[i])):
                 tabuleiro[j][i] = " "
+    print(POWERUP4_COLUNAS)
 
 def eliminapowerup5(tabuleiro, indices):
     for i in range(len(tabuleiro)):
             for j in range(len(tabuleiro)):
                if tabuleiro[i][j] == indices[0]:
                    tabuleiro[i][j] = " "
+    print(POWERUP5)
 
 # função para dar dicas do jogo
 
