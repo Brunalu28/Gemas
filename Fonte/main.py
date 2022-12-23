@@ -136,7 +136,7 @@ def main():
                     except ValueError:
                         print("{}Só são aceitos valores inteiros!{}".format(cores["vermelho"], cores["limpa"]))
             elif passe == "S":
-                print("Obrigada por participar!")
+                print("{}Obrigada por participar! <3{}".format(cores["azul"], cores["limpa"]))
                 if pontos > 0:
                     print("{}Parabéns! Você obteve um total de {} pontos! :){}".format(cores["verde"], pontos, cores["limpa"]))
                 else:

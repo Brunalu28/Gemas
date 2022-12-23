@@ -14,7 +14,7 @@ def limpaTela():
     else:
       system('clear')
 
-# função que gera as cores a partir da quantidade escolhida pelo usuário
+# função que gera as cores a partir da quantidade escolhida pelo usuário no início do jogo
 
 def criacores(num_cores):
     cores_escolhidas = []
@@ -58,7 +58,7 @@ def linhas(tabuleiro, t=0):
 def criar(num_linhas, num_colunas, cores_escolhidas):
     tabuleiro = []
     for i in range(num_linhas):
-    # verifica se logo na criação do tabuleiro são formadas cadeias de 3 elementos nas linhas
+    # verifica se logo na criação do tabuleiro são formadas cadeias de 3 elementos nas linhas, evitando a criação do tabuleiro já com cadeias formadas nas linhas
         while True:
             contcores = 0
             linhas = []
@@ -152,7 +152,7 @@ def cadeiasVerticais(tabuleiro):
             if len(cadeia_vertical) > 0:
                 eliminaCadeia(tabuleiro, cadeia_vertical)
 
-# elimina cadeia de elementos repetidos
+# elimina cadeia de 3 elementos repetidos por meio dos indices indicados pela função de verificar cadeias horizontais e verticais
 
 def eliminaCadeia(tabuleiro, cadeia):
     li = 0
@@ -188,7 +188,7 @@ def imprimir(tabuleiro):
         junt1 = ""
     linhas(tabuleiro, t=1)
 
-# função que contabiliza os pontos em cada rodada
+# função que contabiliza os pontos em cada rodada de trocas
 
 def peçasEliminadas(tabuleiro):
     gemaseliminadas = 0
@@ -203,6 +203,8 @@ def peçasEliminadas(tabuleiro):
 
 
 # função que preenche o tabuleiro após a eliminação das peças
+
+# preenche com novas gemas da mesma lista de cores escolhidas pelo usuário ao início do jogo
 
 def preencher(tabuleiro, cores_escolhidas, num_cores):
     for i in range(len(tabuleiro)):
@@ -291,6 +293,8 @@ def powerup4e5_colunas(tabuleiro):
 
 # funções auxiliares que eliminam os power ups
 
+# exclui a linha
+
 def eliminapowerup4_linhas(tabuleiro, indices):
     for i in range(len(tabuleiro)):
         if i == indices[0]:
@@ -298,6 +302,7 @@ def eliminapowerup4_linhas(tabuleiro, indices):
                 tabuleiro[i][j] = " "
     print(POWERUP4_LINHAS)
 
+# exclui a coluna
 
 def eliminapowerup4_colunas(tabuleiro, indices):
     for i in range(len(tabuleiro)):
@@ -305,6 +310,8 @@ def eliminapowerup4_colunas(tabuleiro, indices):
             for j in range(len(tabuleiro[i])):
                 tabuleiro[j][i] = " "
     print(POWERUP4_COLUNAS)
+
+# exclui todas as letras iguais as letras que formaram a cadeia com 5 elementos
 
 def eliminapowerup5(tabuleiro, indices):
     for i in range(len(tabuleiro)):
@@ -314,6 +321,10 @@ def eliminapowerup5(tabuleiro, indices):
     print(POWERUP5)
 
 # função para dar dicas do jogo
+
+# obs - diferente da função do roteiro, foram identificadas dicas do jogo referentes a linha e coluna do tabuleiro, 
+# basicamente se possuirem duas gemas iguais e a quarta gema for igual as duas anteriores ele informa o indice da linha 
+# e coluna da quarta gema, ex. AABA, será informado os indices da ultima gema A, tanto em casos na linha como na coluna.
 
 # dá dicas de jogadas nas linhas
 
