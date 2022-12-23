@@ -67,7 +67,7 @@ def main():
                 while True:
                     try:
                         linha1 = int(input("Digite a linha em que se localiza a primeira gema: "))
-                        if linha1 <= len(tabuleiro):
+                        if linha1 <= len(tabuleiro) and linha1 >= 0:
                             break
                         else:
                             print("{}Digite um valor dentro do tamanho do tabuleiro!{}".format(cores["vermelho"], cores["limpa"]))
@@ -76,7 +76,7 @@ def main():
                 while True:
                     try:
                         coluna1 = int(input("Digite a coluna em que se localiza a primeira gema: "))
-                        if coluna1 <= len(tabuleiro):
+                        if coluna1 <= len(tabuleiro) and coluna1 >= 0:
                             break
                         else:
                             print("{}Digite um valor dentro do tamanho do tabuleiro!{}".format(cores["vermelho"], cores["limpa"]))
@@ -85,7 +85,7 @@ def main():
                 while True:
                     try:
                         linha2 = int(input("Digite a linha em que se localiza a segunda gema: "))
-                        if linha2 <= len(tabuleiro):
+                        if linha2 <= len(tabuleiro) and linha2 >= 0:
                             break
                         else:
                             print("{}Digite um valor dentro do tamanho do tabuleiro!{}".format(cores["vermelho"], cores["limpa"]))
@@ -94,7 +94,7 @@ def main():
                 while True:
                     try:
                         coluna2 = int(input("Digite a coluna em que se localiza a segunda gema: "))
-                        if coluna2 <= len(tabuleiro):
+                        if coluna2 <= len(tabuleiro) and coluna2 >= 0:
                             break
                         else:
                             print("{}Digite um valor dentro do tamanho do tabuleiro!{}".format(cores["vermelho"], cores["limpa"]))
