@@ -24,4 +24,9 @@ S - Para sair do jogo, vai ser informado pra você quantos pontos você conquist
 {}
 """.format(cores["vermelho"], cores["limpa"], cores["cinza"], cores["limpa"])
 
+POWERUP4_COLUNAS = "{}Você formou um Power Up 4, toda a coluna da cadeia que foi formada no tabuleiro foi eliminada!{}".format(cores["azul"], cores["limpa"])
+
+POWERUP4_LINHAS = "{}Você formou um Power Up 4, toda a linha da cadeia que foi formada no tabuleiro foi eliminada!{}".format(cores["azul"], cores["limpa"])
+
+POWERUP5 = "{}Você formou um Power Up 5, todas as peças iguais a cadeia que foi formada no tabuleiro foram eliminadas!{}".format(cores["azul"], cores["limpa"])
 
