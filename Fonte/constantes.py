@@ -1,6 +1,6 @@
 # Principais constantes do nosso jogo
 
-cores = {"azul": "\033[34m","vermelho": "\033[31m","roxo": "\033[35m","verde": "\033[32m","amarelo": "\033[33m","cinza": "\033[37m","limpa": "\033[m"}
+cores = {"azul": "\033[1;34m","vermelho": "\033[1;31m","roxo": "\033[1;35m","verde": "\033[1;32m","amarelo": "\033[1;33m","cinza": "\033[1;37m","limpa": "\033[m"}
 
 cores_gemas = ['A','B','C','D','E','F','G','H','I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
@@ -10,10 +10,9 @@ MAX_TABULEIRO = 10
 MIN_CORES = 3
 MAX_CORES = 26
 
-INSTRUCOES = """ {}
-
-Instruções para o jogo:
-
+INSTRUCOES = """
+{}Instruções:{}
+{}
 - Inicialmente você irá informar a quantidade de linhas e colunas do seu tabuleiro
     -> Algumas opções: [Fácil: 3-6] [Médio: 6-8] [Difícil: 8-10];
 - Você também irá determinar a quantidade de cores das gemas que vai querer no tabuleiro, tendo um limite de ser maior que 3 e menor ou igual a 26;
@@ -23,6 +22,6 @@ I - Para rever as intruções do jogo;
 TA - Para ver como o tabuleiro está no momento;
 S - Para sair do jogo, vai ser informado pra você quantos pontos você conquistou.
 {}
-""".format(cores["roxo"], cores["limpa"])
+""".format(cores["vermelho"], cores["limpa"], cores["cinza"], cores["limpa"])
 
 

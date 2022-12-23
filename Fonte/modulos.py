@@ -1,10 +1,10 @@
 # Funções genericas que vão estar presente no jogo
 
+from os import system, name
 from constantes import *
 import random
-from os import system, name
 
-# função para limpar o terminal a cada rodada
+# função para limpar o terminal
 
 def limpaTela():
     # windows
@@ -79,12 +79,12 @@ def criar(num_linhas, num_colunas, cores_escolhidas):
 
 # valida a troca permitindo que só sejam feitas se as gemas estiverem lado a lado ou uma abaixo da outra
 
-def validartroca(num_l1, num_c1, num_l2, num_c2, tabuleiro):
+def validartroca(num_l1, num_c1, num_l2, num_c2):
     # permutação na mesma linha
-    if num_l1 == num_l2 and (num_c1 + 1) == num_c2 or num_c1 == num_l2 and (num_c1 - 1) == num_c2:
+    if (num_l1 == num_l2 and (num_c1 + 1) == num_c2) or (num_l1 == num_l2 and (num_c1 - 1) == num_c2):
         return True
     # permutação na mesma coluna
-    elif (num_l1 + 1) == num_l2 and num_c1 == num_c2 or (num_l1 - 1) == num_l2 and num_c1 == num_c2:
+    elif ((num_l1 + 1) == num_l2 and num_c1 == num_c2) or ((num_l1 - 1) == num_l2 and num_c1 == num_c2):
         return True
     else:
         return False

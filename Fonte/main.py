@@ -1,15 +1,16 @@
 from constantes import *
 from modulos import *
 
-print("-=-" * 30)
-print("-=-" * 30)
-print("-=-" * 11, "BEM VINDO AO GEMAS!","-=-" * 12)
-print("-=-" * 30)
-print("-=-" * 30)
+print(""" {}
+
+░█▀▀█ ░█▀▀▀ ░█▀▄▀█ 　 ░█──░█ ▀█▀ ░█▄─░█ ░█▀▀▄ ░█▀▀▀█ 　 ─█▀▀█ ░█▀▀▀█ 　 ░█▀▀█ ░█▀▀▀ ░█▀▄▀█ ─█▀▀█ ░█▀▀▀█ █ 
+░█▀▀▄ ░█▀▀▀ ░█░█░█ 　 ─░█░█─ ░█─ ░█░█░█ ░█─░█ ░█──░█ 　 ░█▄▄█ ░█──░█ 　 ░█─▄▄ ░█▀▀▀ ░█░█░█ ░█▄▄█ ─▀▀▀▄▄ ▀ 
+░█▄▄█ ░█▄▄▄ ░█──░█ 　 ──▀▄▀─ ▄█▄ ░█──▀█ ░█▄▄▀ ░█▄▄▄█ 　 ░█─░█ ░█▄▄▄█ 　 ░█▄▄█ ░█▄▄▄ ░█──░█ ░█─░█ ░█▄▄▄█ ▄{}
+""".format(cores["azul"], cores["limpa"]))
 
 print(INSTRUCOES)
 
-print("-=-" * 11, "VAMOS COMEÇAR O JOGO!","-=-" * 12)
+print(cores["vermelho"], "-=-" * 12, "VAMOS COMEÇAR O JOGO!","-=-" * 12, cores["limpa"])
 print()
 
 # função principal do jogo
@@ -38,6 +39,8 @@ def main():
                 print("{}Digite um número de cores válido!{}".format(cores["vermelho"], cores["limpa"]))
         except ValueError:
             print("{}Digite um número de cores válido!{}".format(cores["vermelho"], cores["limpa"]))
+
+    limpaTela()
 
     coresEscolhidas = criacores(num_cores)
     tabuleiro = criar(num_linhas, num_colunas, coresEscolhidas)
@@ -98,7 +101,7 @@ def main():
                     except ValueError:
                         print("{}Só são aceitos valores inteiros!{}".format(cores["vermelho"], cores["limpa"]))
                 print()
-                resultado = validartroca(linha1, coluna1, linha2, coluna2, tabuleiro)
+                resultado = validartroca(linha1, coluna1, linha2, coluna2)
                 if resultado == False:
                     print("{}As posições informadas são de gemas que não estão ao lado ou abaixo uma da outra, informe novas posições.{}".format(cores["vermelho"], cores["limpa"]))
                 else:
@@ -116,11 +119,22 @@ def main():
                     preencher(tabuleiro, coresEscolhidas, num_cores)
                     imprimir(tabuleiro)
                     print()
-                pontos += eliminadas
+                    pontos += eliminadas
             elif passe == "D":
                 pontos -= 1
-                dicasdojogo_horizontal(tabuleiro)
-                dicasdojogo_vertical(tabuleiro)
+                while True:
+                    try:
+                        op_dicas = input("Digite se deseja dicas de permutações para linhas ou colunas[L ou C]: ").upper()
+                        if op_dicas == "L":
+                            dicasdojogo_horizontal(tabuleiro)
+                            break
+                        elif op_dicas == "C":
+                            dicasdojogo_vertical(tabuleiro)
+                            break
+                        else:
+                            print("{}Digite uma opção válida!{}".format(cores["vermelho"], cores["limpa"]))
+                    except ValueError:
+                        print("{}Só são aceitos valores inteiros!{}".format(cores["vermelho"], cores["limpa"]))
             elif passe == "S":
                 print("Obrigada por participar!")
                 if pontos > 0:

@@ -2,7 +2,7 @@
 
 ## 🎮 Como esse jogo vai funcionar?
 
-Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente, que serão definidas pelo jogador. Nesse tabuleiro teremos peças que iram representar cores (pedras preciosas), a partir do momento em que o jogador realiza a troca de posição de alguma dessas pedras preciosas e forma uma cadeia com três ou mais elementos iguais, essa cadeia é eliminada e o jogador ganha pontos referentes a quantidade de peças, logo após, mais dessas pedras preciosas vão completar o tabuleiro de forma aleatória. O jogo só chegará ao fim quando não existir mais combinações possíveis de serem realizadas no tabuleiro.
+Ele é representado por um tabuleiro com m e n linhas e colunas, respectivamente, que serão definidas pelo jogador. Nesse tabuleiro teremos peças que iram representar cores (pedras preciosas), a partir do momento em que o jogador realiza a troca de posição de alguma dessas pedras preciosas e forma uma cadeia com três ou mais elementos iguais, essa cadeia é eliminada e o jogador ganha pontos referentes a quantidade de peças, logo após, as gemas restantes vão se deslocar para baixo do tabuleiro e mais dessas pedras preciosas vão completar o tabuleiro de forma aleatória. O jogo só chegará ao fim quando não existir mais combinações possíveis de serem realizadas no tabuleiro, ou quando o usuário quiser parar.
 
   ✍ **Observações**
 
