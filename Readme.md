@@ -1,4 +1,4 @@
-> Projeto em desenvolvimento para a disciplina de algoritmos com intuito de criar o jogo gemas (pedras preciosas), que é inspirado no famoso CandyCrush®.
+> Jogo Gemas (pedras preciosas), que é inspirado no famoso CandyCrush®, projeto desenvolvido para a conclusão da disciplina prática e teórica de algoritmos e lógica de programação.
 
 ## 🎮 Como esse jogo vai funcionar?
 
